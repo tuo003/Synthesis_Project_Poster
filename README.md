@@ -22,3 +22,5 @@ In addition, if you wish to knit the `demo.Rmd` directly, you will need to make 
 `tidyverse`, `gapminder`, `gganimate`, `gifski`, `png`, and `kableExtra` packages installed. The first time you knit
 will take a minute or two because of the animation rendering, but this step is cached so will not be
 run again unless you change the animation code. 
+
+Synthesis Project Poster - Seija
