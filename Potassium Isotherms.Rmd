@@ -1,0 +1,139 @@
+---
+title: Soil Potassium Thermodynamics - Soil's ability to supply potassium
+business_unit: CSIRO Agriculture and Food
+theme: midday blueberry
+
+author:  "**Seija Tuomi**"
+github_link: www.github.com/user/project
+# dap_link: https://doi.org/10.4225/08/5756169E381CC # optional
+photo: resources/img/Seija_2.jpeg
+
+title_textsize: 140pt         # Poster title fontsize
+
+# A0 portrait size. Only option for now.
+poster_height: "1189mm" # height in inches of poster
+poster_width: "841mm" # width in inches of post 
+output: 
+  posterdown::posterdown_html:
+    self_contained: FALSE
+    number_sections: FALSE
+    template: resources/html/template.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  results = 'asis',
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = 'center'
+)
+
+#Load libraries
+library(tidyverse)
+library(gapminder)
+library(gganimate)
+library(kableExtra)
+```
+
+
+# Introduction
+
+My name is Seija Tuomi, Laboratory Manager in Ag&F in soil chemistry and spectroscopy. My team is in the Soil Processes and Function group, Agriculture and Global Change Program. Before data school I made a few attempts at coding R for IR spectroscopy but it was never going to be a permanent fixture and I never had any other experience in coding. My normal daily work involved chemical and spectroscopic analysis of soils and field work. Data for the work comes in many forms, including hand written notes, text files, csv and binary. 
+ 
+# My Synthesis Project
+
+My project is looking at the thermodynamics of potassium exchange equilibria in acid sulfate soils in the South Alligator River in Kakadu National Park, and relate it to the soil pedogenesis. This means the ability of a soil to supply K to plants is characterised by both the total amount of nutrient present and the energy level at which it is supplied. This is done by measuring adsorption isotherms. The data comes as cation analyses in various forms and the goal is to compare the isotherms of the edge of the river, flooplain and scrubland. After analysing exchangeable cations I sort data into a tidy data file. I need to do clculations as added column in the dataframe and finally plot the data. I would like to add the an indication of where deficiency, luxury as well as toxic levels of potassium occur.
+
+# My Digital Toolbox
+. Data Management Plan
+. Git bash and git hub repository
+. R - dplyr, ggplot2, tidyverse, Markdown, lm, setwd
+
+## Favourite tool
+
+ggplot2 is my favourite tool to use. It is a very powerful way of representing data and this is something I need to use almost daily. 
+
+# My time went ...
+
+Most of my time went to wrangling data into usable form, finding the correct tools to do it and if these tools work with our version of RStudio. Analytical data comes in many formats and each required it's own script and data frame.  The most surprising thing was that I needed to start my project twice from the beginning in the five weeks we had. I had collated data for a machine learning project but found out that I did not have enough for a training set until well into the project. I have now changed to a different kind of data set which is still connected with my Master's studies that required me to acquire data from UNSW library. What I did'nt know is that it comes as a CD-ROM which has not been digitised.  
+
+What parts of the project took the most time and effort? Were there any surprising challenges you
+encountered, and how did you solve them?
+
+# Next steps
+
+What further steps do you wish your project could take? Or are there any new digital skills that you
+are keen to develop as a result of the work on your synthesis project?
+
+The second half of the poster will demonstrate the different visuals you might use to show off your 
+data. To get tables formatting correctly, use `knitr::kable` to convert the table to html format. If
+you also want to have alternate row highlighting, pass the result to `kable_styling('striped')` 
+from the `kableExtra` package.
+
+To make sure your content distributes across the two columns correctly, you may need to add some 
+additional line breaks at this point to separate the text from the visuals:
+
+<br/>
+<br/>
+<br/>
+
+**Tables**
+```{r mytable, out.width='100%', echo = T}
+knitr::kable(head(gapminder, n = 5), format = "html") %>% 
+  kable_styling("striped")
+```
+
+**Images from a file**
+
+![](resources/img/posterdownlogo.png){width=180px}
+
+**Plots from R**
+```{r standard-plot, out.width='100%', fig.align='center', fig.height= 3, fig.width=8}
+gapminder %>% 
+  filter(year == 1987) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10(labels = function(b) format(b, scientific = F)) +
+  scale_size(trans = "sqrt", guide = "none") +
+  scale_color_brewer(palette = "Set1") +
+  theme_linedraw() +
+  theme(legend.position = "bottom")
+```
+
+
+**Animations just to show off a digital poster**
+```{r anim, fig.align='center', cache=TRUE, out.width="100%"}
+# cache=TRUE because the animations take a while to render
+# so we don't want to render them unless we change the code in here
+
+anim <- gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10(labels = function(b) format(b, scientific = F)) +
+  scale_size(trans = "sqrt", guide = "none") +
+  scale_color_brewer(palette = "Set1") +
+  theme_linedraw() +
+  theme(legend.position = "bottom") +
+  transition_time(year) +
+  ease_aes("cubic-in-out")
+
+
+animate(anim, nframes = 200, fps=20, detail = 2, start_pause = 20, end_pause=20, 
+        width=1200, height=800, res = 200
+)
+```
+
+# My Data School Experience
+
+This poster is mostly about your synthesis project. However we would also like to hear about other
+parts of your Data School experience. What aspects of the program did you really enjoy? How have you
+been applying the skills you have learned in your daily work? Have you been able to transfer this 
+knowledge to your team members? Concrete examples demonstrating this would be useful here
+(meetings/talks/collaborations/new roles). Any descriptions of the personal impact the program has 
+had are welcome here as well
+
+This section will also be shifted outside the two column format (to the bottom -- the focus of this
+poster should be on your achievements in your project!). As with the Introduction, don't change the
+name of this section otherwiseit will not be able to be moved.
+

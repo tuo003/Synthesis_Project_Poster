@@ -1,12 +1,12 @@
 ---
 title: Potassium Isotherms
 business_unit: Agriculture and Food
-theme: midday blueberry
+theme: midday 
 
 author:  "**Seija Tuomi**"
-github_link: www.github.com/user/project
+github_link: "https://github.com/tuo003/Synthesis-Project_Seija"
 # dap_link: https://doi.org/10.4225/08/5756169E381CC # optional
-photo: resources/img/Seija_2.jpeg
+photo: resources/img/Seija_2.jpg
 
 title_textsize: 140pt         # Poster title fontsize
 
@@ -18,7 +18,7 @@ output:
   posterdown::posterdown_html:
     self_contained: FALSE
     number_sections: FALSE
-    template: resources/img/Seija_2.jpg
+    template: resources/html/template.html
 ---
 
 ```{r setup, include=FALSE}
@@ -39,90 +39,130 @@ library(kableExtra)
 
 
 # Introduction
-My name is Seija Tuomi, Laboratory Manager in Ag&F in soil chemistry and spectroscopy. My team is in the Soil Processes and Function group, Agriculture and Global Change Program. Before data school I made a few attempts at coding R for IR spectroscopy but it was never going to be a permanent fixture and I never had any other experience in coding. My normal daily work involved chemical and spectroscopic analysis of soils and field work. Data for the work comes in many forms, including hand written notes, text files, csv and binary.
+My name is Seija Tuomi and I workin Ag&F soil chemistry and spectroscopy. Before data school I made a few attempts at coding R for Infrared Spectroscopy but I have no other experience in coding. Before data school I spent a lot of time entering data into Excel sheets and analysing the data. What I really needed is a programmable language to streamline all the work systematically.  
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 # My Synthesis Project
-My project is looking at the thermodynamics of potassium exchange equilibria in acid sulfate soils in the South Alligator River in Kakadu National Park, and relate it to the soil pedogenesis. This means the ability of a soil to supply K to plants is characterised by both the total amount of nutrient present and the energy level at which it is supplied. This is done by measuring adsorption isotherms. The data comes as cation analyses and the goal is to compare the isotherms of the edge of the river, flooplain and scrubland. After analysing exchangeable cations I sort data into a tidy data file. I need to do clculations as added column in the dataframe and finally plot the data. 
+I am looking at the thermodynamics of potassium exchange equilibria in acid sulfate soils in the South Alligator River in Kakadu National Park, and relate the thermodynamics to the soil pedogenesis, in other words the ability of the soil to supply potassium to plants, which is characterised by both the total amount of nutrient present and the energy level at which it is supplied. This is measured with adsorption isotherms. The data required includes cation analyses, ionic strength, activity coefficients and Gibb's Free energy. The goal is to compare the isotherms of different areas of the riperia zone. The coding work included a script for reading in data, scripts for a calculator of thermodynamic terms fitting a quadratic model to data and visualisation of isotherms.
+
 
 # My Digital Toolbox
 - Data Management Plan
 - Git bash and git hub repository
-- R - dplyr, ggplot2, tidyverse, Markdown, lm, setwd
-- All have been learned since starting data school.
-
-## Favourite tool (optional)
-
-ggplot2 is my favourite tool to use. It is a very powerful way of representing data and this is something I need to use almost daily.
+- R - dplyr, ggplot2, tidyverse, Markdown, lm, setwd, 
+- Posterdown 
+- DAP place-holder
+<br/>
+## Favourite tool - 
+ggplot2 is my favourite tool to use. It is a very powerful way of representing data and this is something I use almost daily. 
 
 # My time went ...
 
-Most of my time went into wrangling data into usable form, finding the correct tools to do it and seeing if these tools work with our version of RStudio. Analytical data comes in many formats and each required it's own script and data frame. I needed a data set on acid sulfate soils from UNSW library. What I did'nt know is that it comes as a CD-ROM with restrictions. Fortunately a colleague knows the author and I was able to call her to get the restriction removed for me.
+Most of my time went into wrangling data into usable form, transforming pdf to csv files, making a thermodynamic calculator, finding the correct tools to analyse it and evaluating these tools to see if they work with our version of RStudio. Analytical data comes in many formats and each requireing it's own script for reading in. My required data came form the UNSW library, as set on acid sulfate soils. What I did'nt know is that it comes as a CD-ROM with restrictions and the file is a 156 page PDF. Fortunately a colleague knows the author and I was able to call her to get the restriction removed.
 
 # Next steps
 
-Because isotherms are not linear I would like to learn non-linear modelling and statistics to build my own package for analysing isotherms, to be used by me and colleagues with minimal knowledge of soil chemistry and added to our digital library. All you need is the cation analyses as input. Isotherms are a very powerful tool in agricultural science. Our group is building a digital library on other things as well so this would fit in. 
-
-
-
-
-The second half of the poster will demonstrate the different visuals you might use to show off your 
-data. To get tables formatting correctly, use `knitr::kable` to convert the table to html format. If
-you also want to have alternate row highlighting, pass the result to `kable_styling('striped')` 
-from the `kableExtra` package.
-
-To make sure your content distributes across the two columns correctly, you may need to add some 
-additional line breaks at this point to separate the text from the visuals:
+Because isotherms are non-linear I would like to learn non-linear modelling and statistics to build my own package for analysing isotherms, for routine use by those with minimal knowledge of soil chemistry. The only input required is exchangeable cation analysis data. Isotherms are a very powerful tool in agricultural science and the information they convey is vital to many applications where the knowledge of nutrient levels is required to make informed decision. 
+Our group is building a digital library based on similar soil properties and isotherms make a great addition to this suite. One of the reasons for coming to DS was to learn the skills to build these chemistry modules and contribute to the library. Also, my group is starting to build a library for multivariate calibrations and calculations for soil attributes for FT-MIR work to be routinely used for soil survey work. With the programming skills from data school I can now contribute to this library as well.  
 
 <br/>
 <br/>
 <br/>
+<br/>
+
+
 
 **Tables**
-```{r mytable, out.width='100%', echo = T}
-knitr::kable(head(gapminder, n = 5), format = "html") %>% 
+```{r mytable, out.width='100%', echo = F}
+library(dplyr)
+data2<- read.csv("~/research.tuo/data_school_mine/synthesis_project_poster/test_case.csv")
+
+# Reading in test_case.csv for isotherms
+# plotting 
+data3<- slice(data2,1:40) %>% dplyr::select(Depth,delta_K, delta_GK_Ca_Mg)
+knitr::kable(head(data3, n = 5), format = "html") %>% 
   kable_styling("striped")
+
+```
+<br/>
+
+<!-- **Images from a file** -->
+
+<!-- # ![](resources/img/posterdownlogo.png){width=180px} -->
+
+**Single isotherms at different depths**
+```{r standard-plot, out.width='100%', fig.align='center', fig.height= 6, fig.width=8}
+
+data2<- read.csv("~/research.tuo/data_school_mine/synthesis_project_poster/test_case.csv")
+
+# Reading in test_case.csv for isotherms
+# plotting 
+data3<- slice(data2,1:40)
+#isotherm <- data.frame(?K, ?GK,Ca+Mg(J/mol))
+ggplot(data3, aes(x =delta_K, y =delta_GK_Ca_Mg,color = Depth))+
+  geom_point()+
+   facet_wrap(.~Depth)+
+  theme_bw()+
+  stat_smooth(method=lm, formula= y~poly(x,2), se=FALSE)+
+ # annotate("segment",x = 0, xend = 0, y = -16000, yend = -9000,colour = "blue")+
+  annotate("text", x = 1.50, y = -9600, label = "luxury", size=3)+
+  annotate("text", x = 1.50, y = -12300, label = "adequate", size=3)+
+  annotate("text", x = 1.50, y = -15700, label = "exhaustion", size=3)+
+  geom_hline(yintercept=-16000, linetype="dashed", 
+             color = "red", size=0.3)+
+  geom_hline(yintercept=-10000, linetype="dashed", 
+             color = "red", size=0.3)+
+  geom_hline(yintercept=-12800, linetype="dashed", 
+             color = "red", size=0.3)+
+  geom_vline(xintercept=0, linetype="dotted", 
+             color = "blue", size=0.4)+
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank())
+  
 ```
 
-**Images from a file**
 
-![](resources/img/posterdownlogo.png){width=180px}
-
-**Plots from R**
-```{r standard-plot, out.width='100%', fig.align='center', fig.height= 3, fig.width=8}
-gapminder %>% 
-  filter(year == 1987) %>% 
-  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) +
-  geom_point() +
-  scale_x_log10(labels = function(b) format(b, scientific = F)) +
-  scale_size(trans = "sqrt", guide = "none") +
-  scale_color_brewer(palette = "Set1") +
-  theme_linedraw() +
-  theme(legend.position = "bottom")
-```
-
-
-**Animations just to show off a digital poster**
+**Isotherms at South Alligator River in Kakadu National Park**
 ```{r anim, fig.align='center', cache=TRUE, out.width="100%"}
 # cache=TRUE because the animations take a while to render
 # so we don't want to render them unless we change the code in here
+data2<- read.csv("~/research.tuo/data_school_mine/synthesis_project_poster/test_case.csv")
 
-anim <- gapminder %>% 
-  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) +
-  geom_point() +
-  scale_x_log10(labels = function(b) format(b, scientific = F)) +
-  scale_size(trans = "sqrt", guide = "none") +
-  scale_color_brewer(palette = "Set1") +
-  theme_linedraw() +
-  theme(legend.position = "bottom") +
-  transition_time(year) +
-  ease_aes("cubic-in-out")
+# Reading in test_case.csv for isotherms
+# plotting 
+data3<- slice(data2,1:40)
+ggplot(data3, aes(x =delta_K, y =delta_GK_Ca_Mg,color = Depth))+
+    geom_point()+
+    #facet_wrap(.~Depth)+
+    theme_bw()+
+    stat_smooth(method=lm, formula= y~poly(x,2), se=FALSE)+
+    # annotate("segment",x = 0, xend = 0, y = -16000, yend = -9000,colour = "blue")+
+    annotate("text", x = 1.50, y = -9600, label = "luxury", size=3)+
+    annotate("text", x = 1.50, y = -12300, label = "adequate", size=3)+
+    annotate("text", x = 1.50, y = -15700, label = "exhaustion", size=3)+
+    geom_hline(yintercept=-16000, linetype="dashed", 
+               color = "red", size=0.3)+
+    geom_hline(yintercept=-10000, linetype="dashed", 
+               color = "red", size=0.3)+
+    geom_hline(yintercept=-12800, linetype="dashed", 
+               color = "red", size=0.3)+
+    geom_vline(xintercept=0, linetype="dotted", 
+               color = "blue", size=0.4)+
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()) 
 
-
-animate(anim, nframes = 200, fps=20, detail = 2, start_pause = 20, end_pause=20, 
-        width=1200, height=800, res = 200
-)
-```
+```        
 
 # My Data School Experience
 
-In my experience the most enjoyable part was learning RStudio, visualisation and statistics properly with teachers whose style suits me well and this is what I will be using most in the future.  After Research Data Management session I organised for the librarians to come and give a 1 hour talk on DAP, orcid no and how to publish data, scripts and papers in DAP and why. The ladies also told us how they can help us with many things that we have never thought of. As result our group leader will reject any paper that has not entered data into DAP. In the future all new project will be required to have a data management plan in place in the beginning on the recommendation of cohort two and three. Also my team will have one data custodian per project. A digital library of data handling is looking possible for several types of work for my team. Spectroscopy team will develop new  analytical methods for FTIR work using HPC, Python and R. I have used RStudio to do that job for my Synthesis Project although it took much longer than in Excel. Cohort three will give a talk on our data school experience in our Building after data school finishes
+The most enjoyable part of DS for me was learning RStudio, visualisation and statistics properly with teachers whose style suit me well. These skills are what I will be using most in the future. After Research Data Management session I invited the librarians to come and give a one hour talk in Butler Bld on DAP, orcid no and how to publish data, scripts and papers in DAP and why it is imortant. The librarians also told us about services they can provide that we have never thought of. As result our group leader will reject any papers where staff have not entered data into DAP. In the future all new projects will be required to have a data management plan in place in the beginning of the project on the recommendation of DS cohort two and three. My team will have one data custodian per project. A digital library of data wrangling is planned for instrument data. Spectroscopy team will develop new  analytical methods for FTIR work using HPC, Python and R. I have used RStudio to wrangle data for my Synthesis Project although it took much longer than in Excel. Cohort three will give a talk on our data school experience in our Building after data school finishes.
