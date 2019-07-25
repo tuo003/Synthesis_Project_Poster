@@ -1,0 +1,16 @@
+#Load libraries
+
+library(tidyverse)
+library(gapminder)
+library(gganimate)
+library(kableExtra)
+
+library(dplyr)
+data2<- read.csv("~/research.tuo/data_school_mine/synthesis_project_poster/test_case.csv")
+
+# Reading in test_case.csv for isotherms
+# making a small table out of big one to display on a poster 
+
+data3<- slice(data2,1:40) %>% dplyr::select(Depth,delta_K, delta_GK_Ca_Mg)
+knitr::kable(head(data3, n = 5), format = "html") %>% 
+  kable_styling("striped")

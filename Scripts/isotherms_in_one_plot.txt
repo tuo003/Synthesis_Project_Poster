@@ -1,0 +1,37 @@
+#Load libraries
+
+library(tidyverse)
+library(gapminder)
+library(gganimate)
+library(kableExtra)
+library(dplyr)
+
+ data2<- read.csv("~/research.tuo/data_school_mine/synthesis_project_poster/test_case.csv")
+
+# Reading in test_case.csv for isotherms
+# plotting
+data3<- slice(data2,1:40)
+#isotherm <- data.frame(?K, ?GK,Ca+Mg(J/mol))
+ggplot(data3, aes(x =delta_K, y =delta_GK_Ca_Mg,color = Depth))+
+  geom_point()+
+   #facet_wrap(.~Depth)+
+  theme_bw()+
+  stat_smooth(method=lm, formula= y~poly(x,2), se=FALSE)+
+ # annotate("segment",x = 0, xend = 0, y = -16000, yend = -9000,colour = "blue")+
+  annotate("text", x = 1.50, y = -9600, label = "luxury", size=3)+
+  annotate("text", x = 1.50, y = -12300, label = "adequate", size=3)+
+  annotate("text", x = 1.50, y = -15700, label = "exhaustion", size=3)+
+  geom_hline(yintercept=-16000, linetype="dashed", 
+             color = "red", size=0.3)+
+  geom_hline(yintercept=-10000, linetype="dashed", 
+             color = "red", size=0.3)+
+  geom_hline(yintercept=-12800, linetype="dashed", 
+             color = "red", size=0.3)+
+  geom_vline(xintercept=0, linetype="dotted", 
+             color = "blue", size=0.4)+
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank())
+        

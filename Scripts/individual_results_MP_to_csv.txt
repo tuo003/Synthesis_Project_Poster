@@ -1,0 +1,89 @@
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+#Isotherms
+
+setwd("~/research.tuo/data_school_mine/synthesis project")
+
+# Reading in result files from MP as csv. with intensities instead of mg/L.
+# Translating absorbance values to mg/L.
+# For each element in the file. 
+# Second try
+
+data<- read.csv("~/research.tuo/data_school_mine/synthesis project/input_data/Iso1_1-26.csv")
+
+standards<- data[1:4,]
+standards
+
+# Ca
+ca_mg<- as.numeric(as.character(standards$Ca_mg.L))
+ca_mg
+
+df<- data.frame(vals, ca_mg)
+names(df)<- c("x", "y")
+
+ca_mod<- lm(y ~ x, data = df)
+ca_mod
+summary(ca_mod)$r.squared
+ca_mod$coefficients
+
+vals<- data$Ca_mg.L
+
+data$pred_ca_mg<- (data$Ca_mg.L - ca_mod$coefficients[1])/ca_mod$coefficients[2]
+data$pred_ca_mg
+ca_mg
+ca_mod
+bind(vals,ca_mod)
+
+
+# Mg
+mg_mg<- as.numeric(as.character(standards$Mg_mg.L))
+mg_mg
+
+df<- data.frame(vals, mg_mg)
+names(df)<- c("x", "y")
+
+mg_mod<- lm(y ~ x, data = df)
+mg_mod
+summary(mg_mod)
+summary(mg_mod)$r.squared
+mg_mod$coefficients
+
+vals<- data$Mg_mg.L
+
+data$pred_mg_mg<- (data$Mg_mg.L - mg_mod$coefficients[1])/mg_mod$coefficients[2]
+data$pred_mg_mg
+
+plot(vals, data$pred_mg_mg)
+
+# Na
+na_mg<- as.numeric(as.character(standards$Na_mg.L))
+na_mg
+
+na_mod<- lm(y ~ x, data = df)
+na_mod
+summary(mod)
+summary(mod)$r.squared
+mod$coefficients
+
+vals<- data$Na_mg.L
+
+data$pred_na_mg<- (data$Na_mg.L - na_mod$coefficients[1])/na_mod$coefficients[2]
+data$pred_mg_mg
+
+# K
+K_mg<- as.numeric(as.character(standards$K_mg.L))
+#K_mg
+
+df<- data.frame(vals, K_mg)
+names(df)<- c("x", "y")
+
+K_mod<- lm(y ~ x, data = df)
+# K_mod
+summary(K_mod)$r.squared
+K_mod$coefficients
+
+vals<- data$K_mg.L
+
+data$pred_K_mg<- (data$K_mg.L - K_mod$coefficients[1])/K_mod$coefficients[2]
+data$pred_K_mg

@@ -1,0 +1,35 @@
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+#Isotherms
+
+setwd("~/research.tuo/data_school_mine/synthesis project")
+
+# Reading in result files from MP as csv. with intensities instead of mg/L.
+# Translating absorbance values to mg/L.
+# For each element in the file. 
+# Second try
+
+data<- read.csv("~/research.tuo/data_school_mine/synthesis project/input_data/Iso1_1-26.csv")
+
+#---------------------------------
+pred_st_ca<-data[1:4,]
+pred_st_ca
+# Find slope and intercept
+
+Ca<-pred_st_ca %>% dplyr::select(Ca_mg.L)#
+
+Standard<- data.frame(standard=c(0,10,20,40))
+
+ca_st<-data.frame(cbind(Ca,Standard))#data.frame(pred_st_ca,l))
+ca_st
+m<-lm(Ca_mg.L ~ standard, data = ca_st)
+
+
+
+data %>% mutate(cal_Ca =(Ca_mg.L-6998)/24325)
+#
+ca_st
+ggplot(ca_st)+geom_line(aes(x= ca_st$x, y=Ca_mg.L))#+scale_y_continuous(c(-10,0,10,20,40,50))
+
+vals<- c(0,10,20,40)

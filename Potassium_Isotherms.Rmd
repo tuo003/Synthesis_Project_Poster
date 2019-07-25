@@ -83,7 +83,7 @@ data2<- read.csv("~/research.tuo/data_school_mine/synthesis_project_poster/test_
 
 # Reading in test_case.csv for isotherms
 # plotting 
-data3<- slice(data2,1:40) %>% dplyr::select(Depth,delta_K, delta_GK_Ca_Mg)
+data3<- slice(data2,1:40) %>% dplyr::select(Depth, delta_GK_Ca, delta_K, delta_GK_Ca_Mg)
 knitr::kable(head(data3, n = 5), format = "html") %>% 
   kable_styling("striped")
 
