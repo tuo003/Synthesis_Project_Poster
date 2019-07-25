@@ -25,7 +25,9 @@ run again unless you change the animation code.
 
 Synthesis Project Poster - Seija
 
-- acqquire isotherm data from UNSW Library, as a CD-ROM
-- data comes as a pdf file
-- transform fdf -> csv on line https://www.pdftoexcel.com/, 
+- Acqquire isotherm data from UNSW Library, as a CD-ROM
+- Data comes as a pdf file
+- Transform pdf -> csv on line https://www.pdftoexcel.com/, a drag and drop, free and quick service. Mine was 156 pages and it took about 2 minutes.
+- Extract rlevant tables from the csv document 
+- 
 - 
