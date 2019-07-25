@@ -38,11 +38,11 @@ Potassium Isotherms
 - Read in cation analysis text files and select relevant columns. Fit a linear model to the standards and use the model to calculate cations as mg/L and pipe this into the thermodynamic calculator. 
 - Since thermodynamic calculator is not availble for RStudio I made one including ionic strength, acitvity coefficients, Gibb's free energy and isotherm calculator all in one.
 - Load libraries into RStudio.
-- Make  data frame of ExcK, Gibb's free energy K, Ca + Mg, Gibb's free energy K, Ca and depths to be displayed on the poster.
+- Make  data frame of ExcH_K, Gibb's free energy K, Ca + Mg, Gibb's free energy K, Ca and depths to be displayed on the poster.
 - Plot isotherm data values on x axis and Gibb's Free energy K, Ca + Mg on y axis. This gives isothems at each depth. Add dotted lines for adequate, luxury and exhaustion levels of K and annotate. Make plot background white for clear plots. 
-- Make a second plot with all the isotherm lines displayed with annotation and lines and the same white background.
+- Make a second plot with all the isotherm lines displayed, annotation and lines and the same white background.
 - Fill in the last section "MY DATASCHOOL EXPERIENCE"
 - For formatting ask Stephen for help. 
-- Push files up to the git hub repository and ssend link to Stephen.
+- Push files up to the git hub repository and send link to Stephen.
 
 
