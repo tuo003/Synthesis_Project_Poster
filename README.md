@@ -24,3 +24,8 @@ will take a minute or two because of the animation rendering, but this step is c
 run again unless you change the animation code. 
 
 Synthesis Project Poster - Seija
+
+- acqquire isotherm data from UNSW Library, as a CD-ROM
+- data comes as a pdf file
+- transform fdf -> csv on line https://www.pdftoexcel.com/, 
+- 
